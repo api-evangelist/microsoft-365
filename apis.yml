@@ -1,0 +1,88 @@
+aid: microsoft-365
+name: Microsoft 365
+description: >-
+  Microsoft 365 is Microsoft's productivity and collaboration suite, including
+  Word, Excel, PowerPoint, Outlook, Teams, OneDrive, SharePoint, and OneNote,
+  along with identity, security, and device management services. Developers
+  access Microsoft 365 data and intelligence programmatically through Microsoft
+  Graph, a unified REST API that exposes users, mail, calendar, files, Teams
+  messages, sites, devices, and more across the Microsoft cloud.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Productivity
+  - Collaboration
+  - Email
+  - Calendar
+  - Files
+  - Identity
+  - Microsoft
+  - Microsoft Graph
+url: https://raw.githubusercontent.com/api-evangelist/microsoft-365/refs/heads/main/apis.yml
+created: '2026-05-11'
+modified: '2026-05-11'
+specificationVersion: '0.19'
+apis:
+  - aid: microsoft-365:graph-api
+    name: Microsoft Graph API
+    description: >-
+      Unified REST API providing a single endpoint to access data and
+      intelligence across Microsoft 365, Microsoft Entra ID, Windows, and
+      Enterprise Mobility + Security. Supports OAuth 2.0 authentication and
+      covers users, mail, calendar, contacts, files (OneDrive), Teams,
+      SharePoint, OneNote, Planner, To Do, Excel, and security services.
+    humanURL: https://learn.microsoft.com/en-us/graph/overview
+    baseURL: https://graph.microsoft.com/v1.0
+    tags:
+      - Microsoft Graph
+      - Users
+      - Mail
+      - Calendar
+      - Files
+      - Teams
+      - SharePoint
+      - Identity
+    properties:
+      - type: Documentation
+        url: https://learn.microsoft.com/en-us/graph/overview
+      - type: API Reference
+        url: https://learn.microsoft.com/en-us/graph/api/overview
+      - type: Graph Explorer
+        url: https://developer.microsoft.com/graph/graph-explorer
+      - type: SDKs
+        url: https://learn.microsoft.com/en-us/graph/sdks/sdks-overview
+  - aid: microsoft-365:graph-beta-api
+    name: Microsoft Graph Beta API
+    description: >-
+      Beta endpoint of the Microsoft Graph API offering preview features and
+      resources before they are promoted to v1.0, including additional
+      insights, reporting, and management capabilities.
+    humanURL: https://learn.microsoft.com/en-us/graph/use-the-api
+    baseURL: https://graph.microsoft.com/beta
+    tags:
+      - Microsoft Graph
+      - Beta
+      - Preview
+    properties:
+      - type: Documentation
+        url: https://learn.microsoft.com/en-us/graph/use-the-api
+common:
+  - type: Website
+    url: https://www.microsoft.com/microsoft-365
+  - type: Developer Portal
+    url: https://developer.microsoft.com/microsoft-365
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/graph
+  - type: Sign Up
+    url: https://www.microsoft.com/microsoft-365/business/compare-all-plans
+  - type: Pricing
+    url: https://www.microsoft.com/microsoft-365/business/compare-all-plans
+  - type: GitHub Organization
+    url: https://github.com/microsoftgraph
+  - type: Authentication
+    url: https://learn.microsoft.com/en-us/graph/auth/auth-concepts
+  - type: Status
+    url: https://admin.microsoft.com/servicestatus
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
