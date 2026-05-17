@@ -45,7 +45,7 @@ apis:
     properties:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/graph/overview
-      - type: API Reference
+      - type: APIReference
         url: https://learn.microsoft.com/en-us/graph/api/overview
       - type: Graph Explorer
         url: https://developer.microsoft.com/graph/graph-explorer
@@ -73,15 +73,15 @@ common:
     url: https://developer.microsoft.com/microsoft-365
   - type: Documentation
     url: https://learn.microsoft.com/en-us/graph
-  - type: Sign Up
+  - type: SignUp
     url: https://www.microsoft.com/microsoft-365/business/compare-all-plans
   - type: Pricing
     url: https://www.microsoft.com/microsoft-365/business/compare-all-plans
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/microsoftgraph
   - type: Authentication
     url: https://learn.microsoft.com/en-us/graph/auth/auth-concepts
-  - type: Status
+  - type: StatusPage
     url: https://admin.microsoft.com/servicestatus
 maintainers:
   - FN: Kin Lane
