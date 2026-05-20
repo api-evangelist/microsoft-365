@@ -67,6 +67,8 @@ apis:
       - type: Documentation
         url: https://learn.microsoft.com/en-us/graph/use-the-api
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/showcase/microsoft-365
   - type: Website
     url: https://www.microsoft.com/microsoft-365
   - type: Developer Portal
