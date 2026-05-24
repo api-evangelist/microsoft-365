@@ -1,0 +1,215 @@
+openapi: 3.1.0
+info:
+  title: Microsoft 365 (Microsoft Graph API)
+  description: |
+    Microsoft 365 productivity and collaboration data is accessed through
+    Microsoft Graph, a unified REST endpoint at https://graph.microsoft.com.
+    The v1.0 service exposes users, groups, mail, calendars, files (OneDrive),
+    Teams, SharePoint sites, and more. Authentication is via OAuth 2.0
+    bearer tokens (Microsoft Entra ID).
+  version: "1.0"
+  contact:
+    name: Microsoft Graph
+    url: https://learn.microsoft.com/en-us/graph/overview
+servers:
+  - url: https://graph.microsoft.com/v1.0
+    description: Microsoft Graph v1.0
+security:
+  - oauth2: []
+tags:
+  - name: Me
+  - name: Users
+  - name: Groups
+  - name: Mail
+  - name: Calendar
+  - name: Files
+  - name: Teams
+paths:
+  /me:
+    get:
+      tags: [Me]
+      summary: Get the signed-in user's profile
+      responses:
+        '200':
+          description: User profile
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+  /me/messages:
+    get:
+      tags: [Mail]
+      summary: List the signed-in user's messages
+      parameters:
+        - in: query
+          name: $filter
+          schema: { type: string }
+        - in: query
+          name: $top
+          schema: { type: integer }
+      responses:
+        '200':
+          description: Messages
+  /me/events:
+    get:
+      tags: [Calendar]
+      summary: List the signed-in user's calendar events
+      responses:
+        '200':
+          description: Events
+  /me/drive/root/children:
+    get:
+      tags: [Files]
+      summary: List items in the signed-in user's OneDrive root
+      responses:
+        '200':
+          description: Drive items
+  /me/manager:
+    get:
+      tags: [Me]
+      summary: Get the signed-in user's manager
+      responses:
+        '200':
+          description: Manager user
+  /me/memberOf:
+    get:
+      tags: [Me]
+      summary: Get groups and directory roles the user is a member of
+      responses:
+        '200':
+          description: Membership list
+  /users:
+    get:
+      tags: [Users]
+      summary: List users in the organization
+      responses:
+        '200':
+          description: Users
+    post:
+      tags: [Users]
+      summary: Create a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/User' }
+      responses:
+        '201':
+          description: User created
+  /users/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Users]
+      summary: Get a user by id or userPrincipalName
+      responses:
+        '200':
+          description: User
+    patch:
+      tags: [Users]
+      summary: Update a user
+      responses:
+        '204': { description: Updated }
+    delete:
+      tags: [Users]
+      summary: Delete a user
+      responses:
+        '204': { description: Deleted }
+  /groups:
+    get:
+      tags: [Groups]
+      summary: List groups
+      responses:
+        '200': { description: Groups }
+    post:
+      tags: [Groups]
+      summary: Create a group
+      responses:
+        '201': { description: Group created }
+  /groups/{id}:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Groups]
+      summary: Get a group
+      responses:
+        '200': { description: Group }
+  /groups/{id}/members:
+    parameters:
+      - in: path
+        name: id
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Groups]
+      summary: List members of a group
+      responses:
+        '200': { description: Members }
+  /teams/{team-id}/channels:
+    parameters:
+      - in: path
+        name: team-id
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Teams]
+      summary: List the channels of a team
+      responses:
+        '200': { description: Channels }
+  /teams/{team-id}/channels/{channel-id}/messages:
+    parameters:
+      - in: path
+        name: team-id
+        required: true
+        schema: { type: string }
+      - in: path
+        name: channel-id
+        required: true
+        schema: { type: string }
+    get:
+      tags: [Teams]
+      summary: List messages in a channel
+      responses:
+        '200': { description: Messages }
+    post:
+      tags: [Teams]
+      summary: Send a message to a channel
+      responses:
+        '201': { description: Message sent }
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            User.Read: Sign in and read user profile
+            User.ReadWrite.All: Read and write all users' full profiles
+            Group.Read.All: Read all groups
+            Mail.Read: Read user mail
+            Calendars.Read: Read user calendars
+            Files.Read.All: Read all files
+            Channel.ReadBasic.All: Read basic channel info
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            https://graph.microsoft.com/.default: Use app-registered Graph permissions
+  schemas:
+    User:
+      type: object
+      properties:
+        id: { type: string }
+        displayName: { type: string }
+        givenName: { type: string }
+        surname: { type: string }
+        mail: { type: string }
+        userPrincipalName: { type: string }
+        jobTitle: { type: string }
