@@ -1,0 +1,1871 @@
+"""
+Microsoft 365 GraphQL Schema
+Source: Microsoft Graph API (https://graph.microsoft.com/v1.0)
+Docs: https://learn.microsoft.com/en-us/graph/api/overview
+"""
+
+# ─── Identity & Users ───────────────────────────────────────────────────────
+
+type User {
+  id: ID!
+  displayName: String
+  givenName: String
+  surname: String
+  userPrincipalName: String
+  mail: String
+  mobilePhone: String
+  jobTitle: String
+  department: String
+  officeLocation: String
+  city: String
+  country: String
+  usageLocation: String
+  accountEnabled: Boolean
+  createdDateTime: String
+  lastSignInDateTime: String
+  manager: Manager
+  directReports: [DirectReport]
+  photo: Photo
+  licenseDetails: [LicenseDetail]
+  presence: UserPresence
+  drive: Drive
+  calendar: Calendar
+  calendarGroups: [CalendarGroup]
+  mailFolders: [Mail]
+  messages: [Message]
+  events: [Event]
+  joinedTeams: [Team]
+  chats: [Chat]
+  plannerTasks: [PlannerTask]
+  toDoLists: [ToDoList]
+  onenote: Onenote
+}
+
+type UserPresence {
+  id: ID!
+  availability: String
+  activity: String
+  statusMessage: String
+  outOfOfficeSettings: OutOfOfficeSettings
+}
+
+type OutOfOfficeSettings {
+  message: String
+  isOutOfOffice: Boolean
+}
+
+type Manager {
+  id: ID!
+  displayName: String
+  userPrincipalName: String
+  jobTitle: String
+  mail: String
+}
+
+type DirectReport {
+  id: ID!
+  displayName: String
+  userPrincipalName: String
+  jobTitle: String
+  mail: String
+}
+
+type Photo {
+  id: ID!
+  height: Int
+  width: Int
+  contentType: String
+}
+
+type LicenseDetail {
+  id: ID!
+  skuId: String
+  skuPartNumber: String
+  servicePlans: [ServicePlan]
+}
+
+type ServicePlan {
+  servicePlanId: String
+  servicePlanName: String
+  provisioningStatus: String
+  appliesTo: String
+}
+
+type SubscribedSku {
+  id: ID!
+  skuId: String
+  skuPartNumber: String
+  consumedUnits: Int
+  prepaidUnits: PrepaidUnits
+  servicePlans: [ServicePlan]
+  capabilityStatus: String
+}
+
+type PrepaidUnits {
+  enabled: Int
+  suspended: Int
+  warning: Int
+}
+
+type Organization {
+  id: ID!
+  displayName: String
+  verifiedDomains: [Domain]
+  assignedPlans: [ServicePlan]
+  businessPhones: [String]
+  city: String
+  country: String
+  countryLetterCode: String
+  createdDateTime: String
+  street: String
+  postalCode: String
+  tenantType: String
+  subscribedSkus: [SubscribedSku]
+}
+
+type Domain {
+  id: ID!
+  authenticationType: String
+  isDefault: Boolean
+  isInitial: Boolean
+  isVerified: Boolean
+  supportedServices: [String]
+  dnsRecords: [DomainDns]
+}
+
+type DomainDns {
+  id: ID!
+  dnsRecordId: String
+  isOptional: Boolean
+  label: String
+  recordType: String
+  supportedService: String
+  ttl: Int
+}
+
+type DirectoryObject {
+  id: ID!
+  deletedDateTime: String
+}
+
+type Group {
+  id: ID!
+  displayName: String
+  description: String
+  mail: String
+  mailEnabled: Boolean
+  securityEnabled: Boolean
+  groupTypes: [String]
+  visibility: String
+  createdDateTime: String
+  members: [DirectoryObject]
+  owners: [DirectoryObject]
+  drive: Drive
+  calendar: Calendar
+  team: Team
+  planner: Planner
+}
+
+# ─── Mail ───────────────────────────────────────────────────────────────────
+
+type Mail {
+  id: ID!
+  displayName: String
+  parentFolderId: String
+  childFolderCount: Int
+  unreadItemCount: Int
+  totalItemCount: Int
+  messages: [Message]
+  childFolders: [Mail]
+}
+
+type Message {
+  id: ID!
+  subject: String
+  bodyPreview: String
+  body: MessageBody
+  sender: Recipient
+  from: Recipient
+  toRecipients: [Recipient]
+  ccRecipients: [Recipient]
+  bccRecipients: [Recipient]
+  replyTo: [Recipient]
+  receivedDateTime: String
+  sentDateTime: String
+  isRead: Boolean
+  isDraft: Boolean
+  importance: String
+  hasAttachments: Boolean
+  attachments: [Attachment]
+  internetMessageId: String
+  conversationId: String
+  flag: MessageFlag
+  categories: [String]
+}
+
+type MessageBody {
+  contentType: String
+  content: String
+}
+
+type MessageFlag {
+  flagStatus: String
+  dueDateTime: String
+  completedDateTime: String
+  startDateTime: String
+}
+
+type Recipient {
+  emailAddress: EmailAddress
+}
+
+type EmailAddress {
+  name: String
+  address: String
+}
+
+type Attachment {
+  id: ID!
+  name: String
+  contentType: String
+  size: Int
+  isInline: Boolean
+  lastModifiedDateTime: String
+}
+
+# ─── Calendar ───────────────────────────────────────────────────────────────
+
+type Calendar {
+  id: ID!
+  name: String
+  color: String
+  hexColor: String
+  isDefaultCalendar: Boolean
+  canShare: Boolean
+  canViewPrivateItems: Boolean
+  canEdit: Boolean
+  owner: EmailAddress
+  events: [Event]
+  calendarView: [CalendarView]
+}
+
+type CalendarGroup {
+  id: ID!
+  name: String
+  classId: String
+  changeKey: String
+  calendars: [Calendar]
+}
+
+type CalendarView {
+  id: ID!
+  subject: String
+  start: DateTimeTimeZone
+  end: DateTimeTimeZone
+  location: Location
+  isAllDay: Boolean
+  isCancelled: Boolean
+  organizer: Recipient
+}
+
+type DateTimeTimeZone {
+  dateTime: String
+  timeZone: String
+}
+
+type Location {
+  displayName: String
+  address: PhysicalAddress
+  coordinates: GeoCoordinates
+}
+
+type PhysicalAddress {
+  street: String
+  city: String
+  state: String
+  countryOrRegion: String
+  postalCode: String
+}
+
+type GeoCoordinates {
+  latitude: Float
+  longitude: Float
+  altitude: Float
+}
+
+type Event {
+  id: ID!
+  subject: String
+  body: MessageBody
+  bodyPreview: String
+  start: DateTimeTimeZone
+  end: DateTimeTimeZone
+  location: Location
+  locations: [Location]
+  isAllDay: Boolean
+  isCancelled: Boolean
+  isOrganizer: Boolean
+  isOnlineMeeting: Boolean
+  onlineMeetingProvider: String
+  onlineMeeting: OnlineMeetingInfo
+  organizer: Recipient
+  attendees: [Attendee]
+  recurrence: Recurrence
+  seriesMasterId: String
+  type: String
+  importance: String
+  sensitivity: String
+  showAs: String
+  categories: [String]
+  hasAttachments: Boolean
+  attachments: [Attachment]
+  instances: [Occurrence]
+  reminders: [Reminder]
+}
+
+type OnlineMeetingInfo {
+  joinUrl: String
+  conferenceId: String
+  tollNumber: String
+}
+
+type Attendee {
+  emailAddress: EmailAddress
+  status: ResponseStatus
+  type: String
+}
+
+type ResponseStatus {
+  response: String
+  time: String
+}
+
+type Occurrence {
+  id: ID!
+  subject: String
+  start: DateTimeTimeZone
+  end: DateTimeTimeZone
+  isCancelled: Boolean
+  seriesMasterId: String
+}
+
+type Recurrence {
+  pattern: RecurrencePattern
+  range: RecurrenceRange
+}
+
+type RecurrencePattern {
+  type: String
+  interval: Int
+  month: Int
+  dayOfMonth: Int
+  daysOfWeek: [String]
+  firstDayOfWeek: String
+  index: String
+}
+
+type RecurrenceRange {
+  type: String
+  startDate: String
+  endDate: String
+  recurrenceTimeZone: String
+  numberOfOccurrences: Int
+}
+
+type Room {
+  id: ID!
+  displayName: String
+  address: PhysicalAddress
+  geoCoordinates: GeoCoordinates
+  phone: String
+  nickname: String
+  emailAddress: String
+  building: String
+  floorNumber: Int
+  capacity: Int
+  isWheelChairAccessible: Boolean
+  bookingType: String
+  tags: [String]
+}
+
+type RoomList {
+  id: ID!
+  displayName: String
+  address: PhysicalAddress
+  phone: String
+  emailAddress: String
+  rooms: [Room]
+}
+
+type Reminder {
+  eventId: String
+  changeKey: String
+  eventStartTime: DateTimeTimeZone
+  eventEndTime: DateTimeTimeZone
+  eventSubject: String
+  eventLocation: Location
+  eventWebLink: String
+  reminderFireTime: DateTimeTimeZone
+}
+
+# ─── Files (OneDrive / SharePoint) ──────────────────────────────────────────
+
+type Drive {
+  id: ID!
+  name: String
+  driveType: String
+  owner: IdentitySet
+  quota: Quota
+  root: DriveItem
+  items: [DriveItem]
+  sharedWithMe: [DriveSharedItem]
+  special: [DriveItem]
+}
+
+type Quota {
+  deleted: Float
+  remaining: Float
+  state: String
+  total: Float
+  used: Float
+}
+
+type IdentitySet {
+  application: Identity
+  device: Identity
+  user: Identity
+}
+
+type Identity {
+  displayName: String
+  id: String
+}
+
+type DriveItem {
+  id: ID!
+  name: String
+  description: String
+  size: Float
+  createdDateTime: String
+  lastModifiedDateTime: String
+  webUrl: String
+  downloadUrl: String
+  mimeType: String
+  parentReference: ItemReference
+  createdBy: IdentitySet
+  lastModifiedBy: IdentitySet
+  file: FileInfo
+  folder: FolderInfo
+  package: PackageInfo
+  children: [DriveItem]
+  thumbnails: [ThumbnailSet]
+  workbook: WorkBook
+  permissions: [Permission]
+}
+
+type ItemReference {
+  driveId: String
+  driveType: String
+  id: String
+  name: String
+  path: String
+  siteId: String
+}
+
+type FileInfo {
+  mimeType: String
+  hashes: Hashes
+}
+
+type Hashes {
+  quickXorHash: String
+  sha1Hash: String
+  sha256Hash: String
+}
+
+type FolderInfo {
+  childCount: Int
+}
+
+type PackageInfo {
+  type: String
+}
+
+type ThumbnailSet {
+  id: String
+  large: Thumbnail
+  medium: Thumbnail
+  small: Thumbnail
+}
+
+type Thumbnail {
+  height: Int
+  url: String
+  width: Int
+}
+
+type Permission {
+  id: ID!
+  roles: [String]
+  link: SharingLink
+  grantedTo: IdentitySet
+  inheritedFrom: ItemReference
+}
+
+type SharingLink {
+  application: Identity
+  scope: String
+  type: String
+  webUrl: String
+}
+
+type DriveSharedItem {
+  id: ID!
+  name: String
+  remoteItem: DriveItem
+  sharedBy: IdentitySet
+  sharedDateTime: String
+}
+
+# ─── OneNote ─────────────────────────────────────────────────────────────────
+
+type Onenote {
+  notebooks: [Notebook]
+  pages: [NotebookPage]
+  sections: [Section]
+  sectionGroups: [SectionGroup]
+}
+
+type Notebook {
+  id: ID!
+  displayName: String
+  createdDateTime: String
+  lastModifiedDateTime: String
+  isDefault: Boolean
+  isShared: Boolean
+  userRole: String
+  createdBy: IdentitySet
+  lastModifiedBy: IdentitySet
+  sections: [Section]
+  sectionGroups: [SectionGroup]
+  links: NotebookLinks
+}
+
+type NotebookLinks {
+  oneNoteClientUrl: ExternalLink
+  oneNoteWebUrl: ExternalLink
+}
+
+type ExternalLink {
+  href: String
+}
+
+type Section {
+  id: ID!
+  displayName: String
+  createdDateTime: String
+  lastModifiedDateTime: String
+  isDefault: Boolean
+  parentNotebook: Notebook
+  parentSectionGroup: SectionGroup
+  pages: [NotebookPage]
+  links: SectionLinks
+}
+
+type SectionLinks {
+  oneNoteClientUrl: ExternalLink
+  oneNoteWebUrl: ExternalLink
+}
+
+type SectionGroup {
+  id: ID!
+  displayName: String
+  createdDateTime: String
+  lastModifiedDateTime: String
+  parentNotebook: Notebook
+  parentSectionGroup: SectionGroup
+  sections: [Section]
+  sectionGroups: [SectionGroup]
+}
+
+type NotebookPage {
+  id: ID!
+  title: String
+  createdDateTime: String
+  lastModifiedDateTime: String
+  level: Int
+  order: Int
+  contentUrl: String
+  parentSection: Section
+  parentNotebook: Notebook
+  links: PageLinks
+}
+
+type PageLinks {
+  oneNoteClientUrl: ExternalLink
+  oneNoteWebUrl: ExternalLink
+}
+
+# ─── Teams ───────────────────────────────────────────────────────────────────
+
+type Team {
+  id: ID!
+  displayName: String
+  description: String
+  internalId: String
+  classification: String
+  specialization: String
+  visibility: String
+  webUrl: String
+  isArchived: Boolean
+  createdDateTime: String
+  channels: [Channel]
+  members: [TeamMember]
+  installedApps: [TeamsApp]
+  primaryChannel: Channel
+  schedule: Schedule
+}
+
+type TeamMember {
+  id: ID!
+  displayName: String
+  roles: [String]
+  userId: String
+  email: String
+  visibleHistoryStartDateTime: String
+}
+
+type Schedule {
+  id: ID!
+  enabled: Boolean
+  timeZone: String
+}
+
+type Channel {
+  id: ID!
+  displayName: String
+  description: String
+  email: String
+  webUrl: String
+  membershipType: String
+  createdDateTime: String
+  messages: [ChannelMessage]
+  members: [TeamMember]
+  tabs: [TeamsTab]
+  filesFolder: DriveItem
+}
+
+type TeamsTab {
+  id: ID!
+  displayName: String
+  webUrl: String
+  teamsApp: TeamsApp
+}
+
+type ChannelMessage {
+  id: ID!
+  replyToId: String
+  etag: String
+  messageType: String
+  createdDateTime: String
+  lastModifiedDateTime: String
+  deletedDateTime: String
+  subject: String
+  summary: String
+  importance: String
+  locale: String
+  webUrl: String
+  from: ChatMessageFrom
+  body: MessageBody
+  attachments: [ChatMessageAttachment]
+  mentions: [ChatMessageMention]
+  reactions: [ChatMessageReaction]
+  replies: [ChannelMessage]
+}
+
+type ChatMessageFrom {
+  application: Identity
+  device: Identity
+  user: Identity
+}
+
+type ChatMessageAttachment {
+  id: String
+  contentType: String
+  contentUrl: String
+  name: String
+  thumbnailUrl: String
+}
+
+type ChatMessageMention {
+  id: Int
+  mentionText: String
+  mentioned: ChatMessageFrom
+}
+
+type ChatMessageReaction {
+  createdDateTime: String
+  reactionType: String
+  user: ChatMessageFrom
+}
+
+type TeamsApp {
+  id: ID!
+  displayName: String
+  distributionMethod: String
+  externalId: String
+  appDefinitions: [TeamsAppDefinition]
+}
+
+type TeamsAppDefinition {
+  id: ID!
+  teamsAppId: String
+  displayName: String
+  version: String
+  publishingState: String
+  shortDescription: String
+  description: String
+  lastModifiedDateTime: String
+}
+
+type Chat {
+  id: ID!
+  topic: String
+  chatType: String
+  createdDateTime: String
+  lastUpdatedDateTime: String
+  webUrl: String
+  members: [TeamMember]
+  messages: [ChatMessage]
+  installedApps: [TeamsApp]
+  tabs: [TeamsTab]
+}
+
+type ChatMessage {
+  id: ID!
+  replyToId: String
+  messageType: String
+  createdDateTime: String
+  lastModifiedDateTime: String
+  deletedDateTime: String
+  subject: String
+  summary: String
+  importance: String
+  locale: String
+  webUrl: String
+  from: ChatMessageFrom
+  body: MessageBody
+  attachments: [ChatMessageAttachment]
+  mentions: [ChatMessageMention]
+  reactions: [ChatMessageReaction]
+  replies: [ChatMessage]
+}
+
+type Meeting {
+  id: ID!
+  subject: String
+  startDateTime: String
+  endDateTime: String
+  isEntryExitAnnounced: Boolean
+  allowedPresenters: String
+  audioConferencing: AudioConferencing
+  chatInfo: ChatInfo
+  videoTeleconferenceId: String
+  externalId: String
+  joinUrl: String
+  participants: MeetingParticipants
+  recordingInfos: [RecordingInfo]
+}
+
+type AudioConferencing {
+  conferenceId: String
+  tollNumber: String
+  tollFreeNumber: String
+  dialinUrl: String
+}
+
+type ChatInfo {
+  threadId: String
+  messageId: String
+  replyChainMessageId: String
+}
+
+type MeetingParticipants {
+  organizer: MeetingParticipantInfo
+  attendees: [MeetingParticipantInfo]
+}
+
+type MeetingParticipantInfo {
+  upn: String
+  role: String
+  identity: IdentitySet
+}
+
+type RecordingInfo {
+  recordingStatus: String
+  initiatedBy: IdentitySet
+  initiatedDateTime: String
+}
+
+type OnlineMeeting {
+  id: ID!
+  subject: String
+  startDateTime: String
+  endDateTime: String
+  joinWebUrl: String
+  joinMeetingIdSettings: JoinMeetingIdSettings
+  audioConferencing: AudioConferencing
+  chatInfo: ChatInfo
+  participants: MeetingParticipants
+  allowedPresenters: String
+  isEntryExitAnnounced: Boolean
+  lobbyBypassSettings: LobbyBypassSettings
+  videoTeleconferenceId: String
+  creationDateTime: String
+  recordings: [CallRecord]
+}
+
+type JoinMeetingIdSettings {
+  isPasscodeRequired: Boolean
+  joinMeetingId: String
+  passcode: String
+}
+
+type LobbyBypassSettings {
+  scope: String
+  isDialInBypassEnabled: Boolean
+}
+
+type CallRecord {
+  id: ID!
+  version: Float
+  type: String
+  modalities: [String]
+  lastModifiedDateTime: String
+  startDateTime: String
+  endDateTime: String
+  joinWebUrl: String
+  organizer: IdentitySet
+  participants: [IdentitySet]
+  sessions: [Session]
+}
+
+type Session {
+  id: ID!
+  modalities: [String]
+  startDateTime: String
+  endDateTime: String
+  caller: Endpoint
+  callee: Endpoint
+  segments: [Segment]
+}
+
+type Endpoint {
+  userAgent: UserAgent
+  feedback: Feedback
+}
+
+type UserAgent {
+  headerValue: String
+  platform: String
+  productFamily: String
+}
+
+type Feedback {
+  rating: String
+  tokens: FeedbackTokens
+  events: [String]
+}
+
+type FeedbackTokens {
+  noSound: Boolean
+  echo: Boolean
+  distorted: Boolean
+  interruptions: Boolean
+  poorVideo: Boolean
+  noVideo: Boolean
+  frozenVideo: Boolean
+}
+
+type Segment {
+  id: ID!
+  startDateTime: String
+  endDateTime: String
+  caller: Endpoint
+  callee: Endpoint
+  media: [Media]
+  failureInfo: FailureInfo
+}
+
+type Media {
+  label: String
+  callerDevice: DeviceInfo
+  callerNetwork: NetworkInfo
+  calleeDevice: DeviceInfo
+  calleeNetwork: NetworkInfo
+  streams: [MediaStream]
+}
+
+type DeviceInfo {
+  captureDeviceName: String
+  renderDeviceName: String
+  captureNotFunctioningEventRatio: Float
+  renderNotFunctioningEventRatio: Float
+  speakerGlitchRate: Float
+  micGlitchRate: Float
+  howlingEventCount: Int
+  lowSpeechLevelEventRatio: Float
+  noiseSuppressedEventRatio: Float
+}
+
+type NetworkInfo {
+  bandwidth: Float
+  basicServiceSetIdentifier: String
+  connectionType: String
+  delayEventRatio: Float
+  dnsSuffix: String
+  ipAddress: String
+  linkSpeed: Float
+  macAddress: String
+  networkTransportProtocol: String
+  port: Int
+  receivedQualityEventRatio: Float
+  reflexiveIPAddress: String
+  relayIPAddress: String
+  relayPort: Int
+  sentQualityEventRatio: Float
+  subnet: String
+  wifiBand: String
+  wifiChannel: Int
+  wifiMicrosoftDriver: String
+  wifiMicrosoftDriverVersion: String
+  wifiRadioType: String
+  wifiSignalStrength: Int
+  wifiVendorDriver: String
+  wifiVendorDriverVersion: String
+}
+
+type MediaStream {
+  streamId: String
+  streamDirection: String
+  averageAudioNetworkJitter: String
+  averageAudioDegradation: Float
+  averageBandwidthEstimate: Float
+  averageJitter: String
+  averagePacketLossRate: Float
+  averageRatioOfConcealedSamples: Float
+  averageReceivedFrameRate: Float
+  averageRoundTripTime: String
+  averageVideoFrameLossPercentage: Float
+  averageVideoFrameRate: Float
+  averageVideoPacketLossRate: Float
+  endDateTime: String
+  lowFrameRateRatio: Float
+  lowVideoProcessingCapabilityRatio: Float
+  maxAudioNetworkJitter: String
+  maxJitter: String
+  maxPacketLossRate: Float
+  maxRatioOfConcealedSamples: Float
+  maxRoundTripTime: String
+  packetUtilization: Float
+  postForwardErrorCorrectionPacketLossRate: Float
+  startDateTime: String
+  wasMediaBypassed: Boolean
+}
+
+type FailureInfo {
+  reason: String
+  stage: String
+}
+
+type Participant {
+  id: ID!
+  info: ParticipantInfo
+  state: String
+  isInLobby: Boolean
+  isMuted: Boolean
+  mediaStreams: [MediaStream]
+}
+
+type ParticipantInfo {
+  identity: IdentitySet
+  languageId: String
+  region: String
+}
+
+# ─── Planner ─────────────────────────────────────────────────────────────────
+
+type Planner {
+  id: ID!
+  plans: [PlannerPlan]
+  tasks: [PlannerTask]
+  buckets: [PlannerBucket]
+}
+
+type PlannerPlan {
+  id: ID!
+  title: String
+  owner: String
+  createdDateTime: String
+  createdBy: IdentitySet
+  tasks: [PlannerTask]
+  buckets: [PlannerBucket]
+  details: PlannerPlanDetails
+}
+
+type PlannerPlanDetails {
+  id: ID!
+  sharedWith: String
+  categoryDescriptions: PlannerCategoryDescriptions
+}
+
+type PlannerCategoryDescriptions {
+  category1: String
+  category2: String
+  category3: String
+  category4: String
+  category5: String
+  category6: String
+}
+
+type PlannerBucket {
+  id: ID!
+  name: String
+  planId: String
+  orderHint: String
+  tasks: [PlannerTask]
+}
+
+type PlannerTask {
+  id: ID!
+  title: String
+  planId: String
+  bucketId: String
+  percentComplete: Int
+  startDateTime: String
+  dueDateTime: String
+  createdDateTime: String
+  completedDateTime: String
+  priority: Int
+  orderHint: String
+  assigneePriority: String
+  hasDescription: Boolean
+  previewType: String
+  referenceCount: Int
+  checklistItemCount: Int
+  activeChecklistItemCount: Int
+  conversationThreadId: String
+  createdBy: IdentitySet
+  assignments: String
+  appliedCategories: String
+  details: PlannerTaskDetails
+}
+
+type PlannerTaskDetails {
+  id: ID!
+  description: String
+  previewType: String
+  references: String
+  checklist: String
+}
+
+# ─── To Do ───────────────────────────────────────────────────────────────────
+
+type ToDoList {
+  id: ID!
+  displayName: String
+  isOwner: Boolean
+  isShared: Boolean
+  wellknownListName: String
+  tasks: [ToDoTask]
+}
+
+type ToDoTask {
+  id: ID!
+  title: String
+  status: String
+  importance: String
+  isReminderOn: Boolean
+  body: MessageBody
+  bodyLastModifiedDateTime: String
+  completedDateTime: DateTimeTimeZone
+  createdDateTime: String
+  dueDateTime: DateTimeTimeZone
+  lastModifiedDateTime: String
+  reminderDateTime: DateTimeTimeZone
+  recurrence: Recurrence
+  categories: [String]
+  linkedResources: [LinkedResource]
+  checklistItems: [ChecklistItem]
+}
+
+type LinkedResource {
+  id: ID!
+  webUrl: String
+  applicationName: String
+  displayName: String
+  externalId: String
+}
+
+type ChecklistItem {
+  id: ID!
+  displayName: String
+  createdDateTime: String
+  checkedDateTime: String
+  isChecked: Boolean
+}
+
+# ─── Excel Online ─────────────────────────────────────────────────────────────
+
+type WorkBook {
+  application: WorkBookApplication
+  names: [WorkBookNamedItem]
+  tables: [WorkTable]
+  worksheets: [WorkSheet]
+  functions: WorkBookFunctions
+  comments: [WorkBookComment]
+}
+
+type WorkBookApplication {
+  calculationMode: String
+}
+
+type WorkBookFunctions {
+  id: ID
+}
+
+type WorkBookNamedItem {
+  id: ID!
+  name: String
+  type: String
+  value: String
+  visible: Boolean
+  comment: String
+  worksheet: WorkSheet
+}
+
+type WorkBookComment {
+  id: ID!
+  content: String
+  contentType: String
+  replies: [WorkBookCommentReply]
+}
+
+type WorkBookCommentReply {
+  id: ID!
+  content: String
+  contentType: String
+}
+
+type WorkSheet {
+  id: ID!
+  name: String
+  position: Int
+  visibility: String
+  charts: [WorkChart]
+  tables: [WorkTable]
+  pivotTables: [WorkPivotTable]
+  range: WorkRange
+  usedRange: WorkRange
+  names: [WorkBookNamedItem]
+}
+
+type WorkRange {
+  address: String
+  addressLocal: String
+  cellCount: Int
+  columnCount: Int
+  columnHidden: Boolean
+  columnIndex: Int
+  formulas: String
+  formulasLocal: String
+  formulasR1C1: String
+  hidden: Boolean
+  numberFormat: String
+  rowCount: Int
+  rowHidden: Boolean
+  rowIndex: Int
+  text: String
+  values: String
+  valueTypes: String
+  format: WorkRangeFormat
+}
+
+type WorkRangeFormat {
+  columnWidth: Float
+  horizontalAlignment: String
+  rowHeight: Float
+  verticalAlignment: String
+  wrapText: Boolean
+  borders: [WorkRangeBorder]
+  fill: WorkRangeFill
+  font: WorkRangeFont
+}
+
+type WorkRangeBorder {
+  id: String
+  color: String
+  style: String
+  sideIndex: String
+  weight: String
+}
+
+type WorkRangeFill {
+  color: String
+}
+
+type WorkRangeFont {
+  bold: Boolean
+  color: String
+  italic: Boolean
+  name: String
+  size: Float
+  underline: String
+}
+
+type WorkTable {
+  id: ID!
+  name: String
+  showBandedColumns: Boolean
+  showBandedRows: Boolean
+  showFilterButton: Boolean
+  showHeaders: Boolean
+  showTotals: Boolean
+  style: String
+  highlightFirstColumn: Boolean
+  highlightLastColumn: Boolean
+  legacyId: String
+  columns: [WorkTableColumn]
+  rows: [WorkTableRow]
+  sort: WorkTableSort
+  worksheet: WorkSheet
+}
+
+type WorkTableColumn {
+  id: ID!
+  index: Int
+  name: String
+  values: String
+  filter: WorkFilter
+  dataBodyRange: WorkRange
+  headerRowRange: WorkRange
+  range: WorkRange
+  totalsRowRange: WorkRange
+}
+
+type WorkTableRow {
+  index: Int
+  values: String
+}
+
+type WorkTableSort {
+  matchCase: Boolean
+  method: String
+}
+
+type WorkFilter {
+  criteria: WorkFilterCriteria
+}
+
+type WorkFilterCriteria {
+  color: String
+  criterion1: String
+  criterion2: String
+  dynamicCriteria: String
+  filterOn: String
+  icon: WorkIcon
+  operator: String
+  values: [String]
+}
+
+type WorkIcon {
+  index: Int
+  set: String
+}
+
+type WorkChart {
+  id: ID!
+  name: String
+  height: Float
+  left: Float
+  top: Float
+  width: Float
+  axes: WorkChartAxes
+  dataLabels: WorkChartDataLabels
+  format: WorkChartFormat
+  legend: WorkChartLegend
+  series: [WorkChartSeries]
+  title: WorkChartTitle
+  worksheet: WorkSheet
+}
+
+type WorkChartAxes {
+  categoryAxis: WorkChartAxis
+  seriesAxis: WorkChartAxis
+  valueAxis: WorkChartAxis
+}
+
+type WorkChartAxis {
+  majorUnit: String
+  maximum: String
+  minimum: String
+  minorUnit: String
+}
+
+type WorkChartDataLabels {
+  position: String
+  separator: String
+  showBubbleSize: Boolean
+  showCategoryName: Boolean
+  showLegendKey: Boolean
+  showPercentage: Boolean
+  showSeriesName: Boolean
+  showValue: Boolean
+}
+
+type WorkChartFormat {
+  fill: WorkRangeFill
+  font: WorkRangeFont
+}
+
+type WorkChartLegend {
+  overlay: Boolean
+  position: String
+  visible: Boolean
+}
+
+type WorkChartSeries {
+  name: String
+  values: WorkRange
+}
+
+type WorkChartTitle {
+  overlay: Boolean
+  text: String
+  visible: Boolean
+}
+
+type WorkPivotTable {
+  id: ID!
+  name: String
+  worksheet: WorkSheet
+}
+
+# ─── App Registrations & Service Principals ──────────────────────────────────
+
+type Application {
+  id: ID!
+  appId: String
+  displayName: String
+  description: String
+  publisherDomain: String
+  signInAudience: String
+  createdDateTime: String
+  deletedDateTime: String
+  web: WebApplication
+  spa: SpaApplication
+  publicClient: PublicClientApplication
+  identifierUris: [String]
+  tags: [String]
+  requiredResourceAccess: [RequiredResourceAccess]
+  appRoles: [AppRole]
+  oauth2Permissions: [OAuth2Permission]
+  keyCredentials: [KeyCredential]
+  passwordCredentials: [PasswordCredential]
+}
+
+type WebApplication {
+  homePageUrl: String
+  logoutUrl: String
+  redirectUris: [String]
+  implicitGrantSettings: ImplicitGrantSettings
+}
+
+type ImplicitGrantSettings {
+  enableAccessTokenIssuance: Boolean
+  enableIdTokenIssuance: Boolean
+}
+
+type SpaApplication {
+  redirectUris: [String]
+}
+
+type PublicClientApplication {
+  redirectUris: [String]
+}
+
+type RequiredResourceAccess {
+  resourceAppId: String
+  resourceAccess: [ResourceAccess]
+}
+
+type ResourceAccess {
+  id: String
+  type: String
+}
+
+type AppRole {
+  id: ID!
+  displayName: String
+  description: String
+  value: String
+  allowedMemberTypes: [String]
+  isEnabled: Boolean
+  origin: String
+}
+
+type OAuth2Permission {
+  id: ID!
+  adminConsentDescription: String
+  adminConsentDisplayName: String
+  isEnabled: Boolean
+  type: String
+  userConsentDescription: String
+  userConsentDisplayName: String
+  value: String
+  origin: String
+}
+
+type KeyCredential {
+  keyId: String
+  type: String
+  usage: String
+  displayName: String
+  startDateTime: String
+  endDateTime: String
+}
+
+type PasswordCredential {
+  keyId: String
+  displayName: String
+  startDateTime: String
+  endDateTime: String
+  hint: String
+}
+
+type ServicePrincipal {
+  id: ID!
+  appId: String
+  displayName: String
+  description: String
+  servicePrincipalType: String
+  accountEnabled: Boolean
+  appDisplayName: String
+  appOwnerOrganizationId: String
+  publisherName: String
+  replyUrls: [String]
+  tags: [String]
+  appRoles: [AppRole]
+  oauth2PermissionScopes: [OAuth2Permission]
+  keyCredentials: [KeyCredential]
+  passwordCredentials: [PasswordCredential]
+  delegatedPermissionClassifications: [DelegatedPermissionClassification]
+}
+
+type DelegatedPermissionClassification {
+  id: ID!
+  classification: String
+  permissionId: String
+  permissionName: String
+}
+
+# ─── Security & Admin ─────────────────────────────────────────────────────────
+
+type Policy {
+  id: ID!
+  displayName: String
+  description: String
+  policyType: String
+  definition: [String]
+  isOrganizationDefault: Boolean
+  keyCredentials: [KeyCredential]
+}
+
+type ConditionalAccess {
+  id: ID!
+  displayName: String
+  state: String
+  createdDateTime: String
+  modifiedDateTime: String
+  conditions: ConditionalAccessConditionSet
+  grantControls: ConditionalAccessGrantControls
+  sessionControls: ConditionalAccessSessionControls
+}
+
+type ConditionalAccessConditionSet {
+  applications: ConditionalAccessApplications
+  users: ConditionalAccessUsers
+  locations: ConditionalAccessLocations
+  platforms: ConditionalAccessPlatforms
+  signInRiskLevels: [String]
+  userRiskLevels: [String]
+}
+
+type ConditionalAccessApplications {
+  includeApplications: [String]
+  excludeApplications: [String]
+  includeUserActions: [String]
+}
+
+type ConditionalAccessUsers {
+  includeUsers: [String]
+  excludeUsers: [String]
+  includeGroups: [String]
+  excludeGroups: [String]
+  includeRoles: [String]
+  excludeRoles: [String]
+}
+
+type ConditionalAccessLocations {
+  includeLocations: [String]
+  excludeLocations: [String]
+}
+
+type ConditionalAccessPlatforms {
+  includePlatforms: [String]
+  excludePlatforms: [String]
+}
+
+type ConditionalAccessGrantControls {
+  operator: String
+  builtInControls: [String]
+  customAuthenticationFactors: [String]
+  termsOfUse: [String]
+}
+
+type ConditionalAccessSessionControls {
+  applicationEnforcedRestrictions: Boolean
+  cloudAppSecurity: CloudAppSecuritySessionControl
+  signInFrequency: SignInFrequencySessionControl
+  persistentBrowser: PersistentBrowserSessionControl
+}
+
+type CloudAppSecuritySessionControl {
+  isEnabled: Boolean
+  cloudAppSecurityType: String
+}
+
+type SignInFrequencySessionControl {
+  isEnabled: Boolean
+  type: String
+  value: Int
+}
+
+type PersistentBrowserSessionControl {
+  isEnabled: Boolean
+  mode: String
+}
+
+type Compliance {
+  id: ID!
+  ediscovery: EdiscoveryCases
+}
+
+type EdiscoveryCases {
+  cases: [EdiscoveryCase]
+}
+
+type EdiscoveryCase {
+  id: ID!
+  displayName: String
+  description: String
+  status: String
+  createdDateTime: String
+  lastModifiedDateTime: String
+  closedDateTime: String
+  closedBy: IdentitySet
+  externalId: String
+}
+
+type Admin {
+  id: ID!
+  serviceAnnouncement: ServiceAnnouncement
+}
+
+type ServiceAnnouncement {
+  messages: [ServiceMessage]
+  healthOverviews: [ServiceHealthOverview]
+}
+
+type ServiceMessage {
+  id: ID!
+  title: String
+  body: MessageBody
+  startDateTime: String
+  endDateTime: String
+  lastModifiedDateTime: String
+  messageType: String
+  status: String
+  severity: String
+  tags: [String]
+  services: [String]
+  isMajorChange: Boolean
+  actionRequiredByDateTime: String
+}
+
+type ServiceHealthOverview {
+  id: ID!
+  service: String
+  status: String
+  issues: [ServiceHealthIssue]
+}
+
+type ServiceHealthIssue {
+  id: ID!
+  title: String
+  startDateTime: String
+  endDateTime: String
+  lastModifiedDateTime: String
+  impactDescription: String
+  status: String
+  service: String
+  feature: String
+  featureGroup: String
+  isResolved: Boolean
+  origin: String
+  posts: [ServiceHealthIssuePost]
+}
+
+type ServiceHealthIssuePost {
+  createdDateTime: String
+  postType: String
+  description: MessageBody
+}
+
+type ActivityReport {
+  id: ID!
+  reportRefreshDate: String
+  reportPeriod: String
+  activeUsers: Int
+  emailActivityUserDetail: [EmailActivityDetail]
+  teamsUserActivityUserDetail: [TeamsActivityDetail]
+  oneDriveActivityUserDetail: [OneDriveActivityDetail]
+  sharePointActivityUserDetail: [SharePointActivityDetail]
+}
+
+type EmailActivityDetail {
+  reportRefreshDate: String
+  userPrincipalName: String
+  displayName: String
+  isDeleted: Boolean
+  deletedDate: String
+  lastActivityDate: String
+  sendCount: Int
+  receiveCount: Int
+  readCount: Int
+}
+
+type TeamsActivityDetail {
+  reportRefreshDate: String
+  userPrincipalName: String
+  lastActivityDate: String
+  teamChatMessageCount: Int
+  privateChatMessageCount: Int
+  callCount: Int
+  meetingCount: Int
+}
+
+type OneDriveActivityDetail {
+  reportRefreshDate: String
+  userPrincipalName: String
+  lastActivityDate: String
+  viewedOrEditedFileCount: Int
+  syncedFileCount: Int
+  sharedInternallyFileCount: Int
+  sharedExternallyFileCount: Int
+}
+
+type SharePointActivityDetail {
+  reportRefreshDate: String
+  userPrincipalName: String
+  lastActivityDate: String
+  viewedOrEditedFileCount: Int
+  syncedFileCount: Int
+  sharedInternallyFileCount: Int
+  sharedExternallyFileCount: Int
+  visitedPageCount: Int
+}
+
+type APIKey {
+  id: ID!
+  name: String
+  value: String
+  createdDateTime: String
+  expiresDateTime: String
+  hint: String
+}
+
+type Token {
+  accessToken: String
+  tokenType: String
+  expiresIn: Int
+  expiresAt: String
+  refreshToken: String
+  idToken: String
+  scope: String
+  extExpiresIn: Int
+}
+
+# ─── Root Types ───────────────────────────────────────────────────────────────
+
+type Query {
+  me: User
+  user(id: ID!): User
+  users: [User]
+  organization: Organization
+  subscribedSkus: [SubscribedSku]
+  group(id: ID!): Group
+  groups: [Group]
+  application(id: ID!): Application
+  applications: [Application]
+  servicePrincipal(id: ID!): ServicePrincipal
+  servicePrincipals: [ServicePrincipal]
+  drive(id: ID!): Drive
+  driveItem(driveId: ID!, itemId: ID!): DriveItem
+  team(id: ID!): Team
+  teams: [Team]
+  chat(id: ID!): Chat
+  onlineMeeting(id: ID!): OnlineMeeting
+  callRecord(id: ID!): CallRecord
+  plannerPlan(id: ID!): PlannerPlan
+  plannerTask(id: ID!): PlannerTask
+  notebook(id: ID!): Notebook
+  conditionalAccessPolicies: [ConditionalAccess]
+  activityReport(period: String): ActivityReport
+  rooms: [Room]
+  roomLists: [RoomList]
+  domain(id: ID!): Domain
+  domains: [Domain]
+  serviceHealth: [ServiceHealthOverview]
+}
+
+type Mutation {
+  sendMessage(userId: ID!, message: MessageInput!): Message
+  createEvent(userId: ID!, event: EventInput!): Event
+  updateEvent(userId: ID!, eventId: ID!, event: EventInput!): Event
+  deleteEvent(userId: ID!, eventId: ID!): Boolean
+  createPlannerTask(task: PlannerTaskInput!): PlannerTask
+  updatePlannerTask(id: ID!, task: PlannerTaskInput!): PlannerTask
+  createToDoTask(listId: ID!, task: ToDoTaskInput!): ToDoTask
+  updateToDoTask(listId: ID!, taskId: ID!, task: ToDoTaskInput!): ToDoTask
+  createTeam(team: TeamInput!): Team
+  createChannel(teamId: ID!, channel: ChannelInput!): Channel
+  sendChannelMessage(teamId: ID!, channelId: ID!, message: ChatMessageInput!): ChannelMessage
+  createOnlineMeeting(meeting: OnlineMeetingInput!): OnlineMeeting
+  uploadDriveItem(driveId: ID!, parentId: ID!, name: String!, content: String!): DriveItem
+}
+
+input MessageInput {
+  subject: String
+  body: MessageBodyInput!
+  toRecipients: [RecipientInput!]!
+  ccRecipients: [RecipientInput]
+  importance: String
+  attachments: [AttachmentInput]
+}
+
+input MessageBodyInput {
+  contentType: String!
+  content: String!
+}
+
+input RecipientInput {
+  emailAddress: EmailAddressInput!
+}
+
+input EmailAddressInput {
+  name: String
+  address: String!
+}
+
+input AttachmentInput {
+  name: String!
+  contentType: String!
+  contentBytes: String!
+}
+
+input EventInput {
+  subject: String!
+  body: MessageBodyInput
+  start: DateTimeTimeZoneInput!
+  end: DateTimeTimeZoneInput!
+  location: LocationInput
+  attendees: [AttendeeInput]
+  isOnlineMeeting: Boolean
+  recurrence: RecurrenceInput
+}
+
+input DateTimeTimeZoneInput {
+  dateTime: String!
+  timeZone: String!
+}
+
+input LocationInput {
+  displayName: String!
+}
+
+input AttendeeInput {
+  emailAddress: EmailAddressInput!
+  type: String
+}
+
+input RecurrenceInput {
+  pattern: RecurrencePatternInput
+  range: RecurrenceRangeInput
+}
+
+input RecurrencePatternInput {
+  type: String!
+  interval: Int
+  daysOfWeek: [String]
+}
+
+input RecurrenceRangeInput {
+  type: String!
+  startDate: String
+  endDate: String
+  numberOfOccurrences: Int
+}
+
+input PlannerTaskInput {
+  title: String!
+  planId: String!
+  bucketId: String
+  dueDateTime: String
+  percentComplete: Int
+  priority: Int
+}
+
+input ToDoTaskInput {
+  title: String!
+  status: String
+  importance: String
+  body: MessageBodyInput
+  dueDateTime: DateTimeTimeZoneInput
+  reminderDateTime: DateTimeTimeZoneInput
+}
+
+input TeamInput {
+  displayName: String!
+  description: String
+  visibility: String
+}
+
+input ChannelInput {
+  displayName: String!
+  description: String
+  membershipType: String
+}
+
+input ChatMessageInput {
+  body: MessageBodyInput!
+  importance: String
+  subject: String
+}
+
+input OnlineMeetingInput {
+  subject: String!
+  startDateTime: String!
+  endDateTime: String!
+  allowedPresenters: String
+}
