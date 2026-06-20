@@ -7,7 +7,7 @@ description: Microsoft 365 is Microsoft's productivity and collaboration suite, 
   API that exposes users, mail, calendar, files, Teams messages, sites, devices, and
   more across the Microsoft cloud.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Productivity
 - Collaboration
