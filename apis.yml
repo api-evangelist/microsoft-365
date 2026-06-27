@@ -70,11 +70,11 @@ common:
   url: https://www.linkedin.com/showcase/microsoft-365
 - type: Website
   url: https://www.microsoft.com/microsoft-365
-- type: Developer Portal
+- type: DeveloperPortal
   url: https://developer.microsoft.com/microsoft-365
 - type: Documentation
   url: https://learn.microsoft.com/en-us/graph
-- type: SignUp
+- type: Signup
   url: https://www.microsoft.com/microsoft-365/business/compare-all-plans
 - type: Pricing
   url: https://www.microsoft.com/microsoft-365/business/compare-all-plans
