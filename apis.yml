@@ -66,6 +66,14 @@ apis:
   - type: Documentation
     url: https://learn.microsoft.com/en-us/graph/use-the-api
 common:
+- type: TrustCenter
+  url: security/microsoft-365-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/microsoft-365-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/microsoft-365-domain-security.yml
+- type: Authentication
+  url: authentication/microsoft-365-authentication.yml
 - type: OAuthScopes
   url: scopes/microsoft-365-scopes.yml
 - type: LinkedIn
