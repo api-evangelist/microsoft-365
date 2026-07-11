@@ -1,0 +1,62 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/microsoft-365-openapi.yml
+schemes:
+- name: oauth2
+  source: openapi/microsoft-365-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+    tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+  - flow: clientCredentials
+    tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+  description: Microsoft Entra ID OAuth 2.0
+scopes:
+- scope: Calendars.Read
+  description: Read user calendars
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/microsoft-365-openapi.yml
+- scope: Channel.ReadBasic.All
+  description: Read basic channel info
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/microsoft-365-openapi.yml
+- scope: Files.Read.All
+  description: Read all files
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/microsoft-365-openapi.yml
+- scope: Group.Read.All
+  description: Read all groups
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/microsoft-365-openapi.yml
+- scope: Mail.Read
+  description: Read user mail
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/microsoft-365-openapi.yml
+- scope: User.Read
+  description: Sign in and read user profile
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/microsoft-365-openapi.yml
+- scope: User.ReadWrite.All
+  description: Read and write all users' full profiles
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/microsoft-365-openapi.yml
+- scope: https://graph.microsoft.com/.default
+  description: Use app-registered Graph permissions
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/microsoft-365-openapi.yml
