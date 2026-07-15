@@ -66,6 +66,8 @@ apis:
   - type: Documentation
     url: https://learn.microsoft.com/en-us/graph/use-the-api
 common:
+- type: AgenticAccess
+  url: agentic-access/microsoft-365-agentic-access.yml
 - type: TrustCenter
   url: security/microsoft-365-trust-center.yml
 - type: VulnerabilityDisclosure
