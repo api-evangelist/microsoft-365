@@ -1,0 +1,55 @@
+openapi: 3.1.0
+info:
+  title: Microsoft 365 (Microsoft Graph API) Calendar API
+  description: 'Microsoft 365 productivity and collaboration data is accessed through
+
+    Microsoft Graph, a unified REST endpoint at https://graph.microsoft.com.
+
+    The v1.0 service exposes users, groups, mail, calendars, files (OneDrive),
+
+    Teams, SharePoint sites, and more. Authentication is via OAuth 2.0
+
+    bearer tokens (Microsoft Entra ID).
+
+    '
+  version: '1.0'
+  contact:
+    name: Microsoft Graph
+    url: https://learn.microsoft.com/en-us/graph/overview
+servers:
+- url: https://graph.microsoft.com/v1.0
+  description: Microsoft Graph v1.0
+security:
+- oauth2: []
+tags:
+- name: Calendar
+paths:
+  /me/events:
+    get:
+      tags:
+      - Calendar
+      summary: List the signed-in user's calendar events
+      responses:
+        '200':
+          description: Events
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Microsoft Entra ID OAuth 2.0
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.microsoftonline.com/common/oauth2/v2.0/authorize
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            User.Read: Sign in and read user profile
+            User.ReadWrite.All: Read and write all users' full profiles
+            Group.Read.All: Read all groups
+            Mail.Read: Read user mail
+            Calendars.Read: Read user calendars
+            Files.Read.All: Read all files
+            Channel.ReadBasic.All: Read basic channel info
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/common/oauth2/v2.0/token
+          scopes:
+            https://graph.microsoft.com/.default: Use app-registered Graph permissions
