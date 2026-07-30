@@ -7,7 +7,19 @@ description: Microsoft 365 is Microsoft's productivity and collaboration suite, 
   API that exposes users, mail, calendar, files, Teams messages, sites, devices, and
   more across the Microsoft cloud.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/microsoft-365.png
 tags:
 - Productivity
 - Collaboration
@@ -24,11 +36,11 @@ specificationVersion: '0.19'
 apis:
 - aid: microsoft-365:graph-api
   name: Microsoft Graph API
-  description: Unified REST API providing a single endpoint to access data and intelligence
-    across Microsoft 365, Microsoft Entra ID, Windows, and Enterprise Mobility + Security.
-    Supports OAuth 2.0 authentication and covers users, mail, calendar, contacts,
-    files (OneDrive), Teams, SharePoint, OneNote, Planner, To Do, Excel, and security
-    services.
+  description: >-
+    Unified REST API providing a single endpoint to access data and intelligence across Microsoft 365,
+    Microsoft Entra ID, Windows, and Enterprise Mobility + Security. Supports OAuth 2.0 authentication
+    and covers users, mail, calendar, contacts, files (OneDrive), Teams, SharePoint, OneNote, Planner,
+    To Do, Excel, and security services.
   humanURL: https://learn.microsoft.com/en-us/graph/overview
   baseURL: https://graph.microsoft.com/v1.0
   tags:
@@ -53,9 +65,9 @@ apis:
     type: GraphQL
 - aid: microsoft-365:graph-beta-api
   name: Microsoft Graph Beta API
-  description: Beta endpoint of the Microsoft Graph API offering preview features
-    and resources before they are promoted to v1.0, including additional insights,
-    reporting, and management capabilities.
+  description: >-
+    Beta endpoint of the Microsoft Graph API offering preview features and resources before they are promoted
+    to v1.0, including additional insights, reporting, and management capabilities.
   humanURL: https://learn.microsoft.com/en-us/graph/use-the-api
   baseURL: https://graph.microsoft.com/beta
   tags:
@@ -65,6 +77,76 @@ apis:
   properties:
   - type: Documentation
     url: https://learn.microsoft.com/en-us/graph/use-the-api
+- aid: microsoft-365:microsoft-365-calendar-api
+  name: Microsoft 365 Calendar API
+  description: The Calendar API from Microsoft 365 — 1 operation(s) for calendar.
+  humanURL: https://learn.microsoft.com/en-us/graph/overview
+  baseURL: https://graph.microsoft.com/v1.0
+  tags:
+  - Calendar
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-365-calendar-api-openapi.yml
+- aid: microsoft-365:microsoft-365-files-api
+  name: Microsoft 365 Files API
+  description: The Files API from Microsoft 365 — 1 operation(s) for files.
+  humanURL: https://learn.microsoft.com/en-us/graph/overview
+  baseURL: https://graph.microsoft.com/v1.0
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-365-files-api-openapi.yml
+- aid: microsoft-365:microsoft-365-groups-api
+  name: Microsoft 365 Groups API
+  description: The Groups API from Microsoft 365 — 3 operation(s) for groups.
+  humanURL: https://learn.microsoft.com/en-us/graph/overview
+  baseURL: https://graph.microsoft.com/v1.0
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-365-groups-api-openapi.yml
+- aid: microsoft-365:microsoft-365-mail-api
+  name: Microsoft 365 Mail API
+  description: The Mail API from Microsoft 365 — 1 operation(s) for mail.
+  humanURL: https://learn.microsoft.com/en-us/graph/overview
+  baseURL: https://graph.microsoft.com/v1.0
+  tags:
+  - Mail
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-365-mail-api-openapi.yml
+- aid: microsoft-365:microsoft-365-me-api
+  name: Microsoft 365 Me API
+  description: The Me API from Microsoft 365 — 3 operation(s) for me.
+  humanURL: https://learn.microsoft.com/en-us/graph/overview
+  baseURL: https://graph.microsoft.com/v1.0
+  tags:
+  - Me
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-365-me-api-openapi.yml
+- aid: microsoft-365:microsoft-365-teams-api
+  name: Microsoft 365 Teams API
+  description: The Teams API from Microsoft 365 — 2 operation(s) for teams.
+  humanURL: https://learn.microsoft.com/en-us/graph/overview
+  baseURL: https://graph.microsoft.com/v1.0
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-365-teams-api-openapi.yml
+- aid: microsoft-365:microsoft-365-users-api
+  name: Microsoft 365 Users API
+  description: The Users API from Microsoft 365 — 2 operation(s) for users.
+  humanURL: https://learn.microsoft.com/en-us/graph/overview
+  baseURL: https://graph.microsoft.com/v1.0
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-365-users-api-openapi.yml
 common:
 - type: AgenticAccess
   url: agentic-access/microsoft-365-agentic-access.yml
