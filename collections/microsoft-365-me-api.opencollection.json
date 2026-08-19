@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft 365 (Microsoft Graph API) Calendar Me API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Me",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the signed-in user's profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.microsoft.com/v1.0/me"
+          },
+          "docs": "Get the signed-in user's profile"
+        },
+        {
+          "info": {
+            "name": "Get the signed-in user's manager",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.microsoft.com/v1.0/me/manager"
+          },
+          "docs": "Get the signed-in user's manager"
+        },
+        {
+          "info": {
+            "name": "Get groups and directory roles the user is a member of",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.microsoft.com/v1.0/me/memberOf"
+          },
+          "docs": "Get groups and directory roles the user is a member of"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

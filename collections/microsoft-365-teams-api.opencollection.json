@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft 365 (Microsoft Graph API) Calendar Teams API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.microsoftonline.com/common/oauth2/v2.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the channels of a team",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.microsoft.com/v1.0/teams/:team-id/channels",
+            "params": [
+              {
+                "name": "team-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List the channels of a team"
+        },
+        {
+          "info": {
+            "name": "List messages in a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://graph.microsoft.com/v1.0/teams/:team-id/channels/:channel-id/messages",
+            "params": [
+              {
+                "name": "team-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "channel-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List messages in a channel"
+        },
+        {
+          "info": {
+            "name": "Send a message to a channel",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://graph.microsoft.com/v1.0/teams/:team-id/channels/:channel-id/messages",
+            "params": [
+              {
+                "name": "team-id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "channel-id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Send a message to a channel"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
