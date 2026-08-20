@@ -25,6 +25,15 @@ tags:
 - Collaboration
 - Email
 - Calendar
+- File
+- Identity
+- Microsoft
+- Microsoft Graph
+tags_raw:
+- Productivity
+- Collaboration
+- Email
+- Calendar
 - Files
 - Identity
 - Microsoft
@@ -44,6 +53,15 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/graph/overview
   baseURL: https://graph.microsoft.com/v1.0
   tags:
+  - Microsoft Graph
+  - User
+  - Mail
+  - Calendar
+  - File
+  - Team
+  - SharePoint
+  - Identity
+  tags_raw:
   - Microsoft Graph
   - Users
   - Mail
@@ -93,6 +111,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/graph/overview
   baseURL: https://graph.microsoft.com/v1.0
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -103,6 +123,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/graph/overview
   baseURL: https://graph.microsoft.com/v1.0
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -133,6 +155,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/graph/overview
   baseURL: https://graph.microsoft.com/v1.0
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -143,6 +167,8 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/graph/overview
   baseURL: https://graph.microsoft.com/v1.0
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
