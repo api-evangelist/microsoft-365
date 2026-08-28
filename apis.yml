@@ -7,6 +7,18 @@ description: Microsoft 365 is Microsoft's productivity and collaboration suite, 
   API that exposes users, mail, calendar, files, Teams messages, sites, devices, and
   more across the Microsoft cloud.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -174,6 +186,9 @@ apis:
   - type: OpenAPI
     url: openapi/microsoft-365-users-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/microsoft-365-capability-edges.yml
+  name: Microsoft 365 Business Capability Map
 - type: AgenticAccess
   url: agentic-access/microsoft-365-agentic-access.yml
 - type: TrustCenter
