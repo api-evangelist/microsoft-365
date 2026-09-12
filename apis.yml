@@ -50,7 +50,7 @@ tags_raw:
 - Identity
 - Microsoft
 - Microsoft Graph
-url: https://raw.githubusercontent.com/api-evangelist/microsoft-365/refs/heads/main/apis.yml
+url: https://learn.microsoft.com/en-us/graph
 created: '2026-05-11'
 modified: '2026-05-11'
 specificationVersion: '0.23'
