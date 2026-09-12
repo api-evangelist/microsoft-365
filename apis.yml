@@ -222,3 +222,5 @@ common:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-parent: microsoft
+x-relationship: product
