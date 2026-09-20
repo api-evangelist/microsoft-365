@@ -1,0 +1,18 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans
+sources:
+- https://www.microsoft.com/en-us/microsoft-365/business/compare-all-plans
+- https://www.microsoft.com/microsoft-365/business/compare-all-plans
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: unclear
+pricing_basis: none
+published: false
+note: No numeric price is published on the pricing page; Page is a bot-detection block page ('Your request
+  has been blocked'), showing only Microsoft site navigation and no pricing content.
+plan_count: 0
+plans: []

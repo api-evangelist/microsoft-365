@@ -186,6 +186,8 @@ apis:
   - type: OpenAPI
     url: openapi/microsoft-365-users-api-openapi.yml
 common:
+- type: Plans
+  url: plans/microsoft-365-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/microsoft-365-capability-edges.yml
   name: Microsoft 365 Business Capability Map
