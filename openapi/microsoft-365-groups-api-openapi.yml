@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Microsoft 365 (Microsoft Graph API) Calendar Groups API
+  title: Microsoft 365 (Microsoft Graph API) Groups API
   description: 'Microsoft 365 productivity and collaboration data is accessed through
 
     Microsoft Graph, a unified REST endpoint at https://graph.microsoft.com.
@@ -9,9 +9,7 @@ info:
 
     Teams, SharePoint sites, and more. Authentication is via OAuth 2.0
 
-    bearer tokens (Microsoft Entra ID).
-
-    '
+    bearer tokens (Microsoft Entra ID).'
   version: '1.0'
   contact:
     name: Microsoft Graph
@@ -32,6 +30,8 @@ paths:
       responses:
         '200':
           description: Groups
+      operationId: getGroups
+      x-operation-id-source: derived
     post:
       tags:
       - Groups
@@ -39,6 +39,8 @@ paths:
       responses:
         '201':
           description: Group created
+      operationId: postGroups
+      x-operation-id-source: derived
   /groups/{id}:
     parameters:
     - in: path
@@ -53,6 +55,8 @@ paths:
       responses:
         '200':
           description: Group
+      operationId: getGroupsById
+      x-operation-id-source: derived
   /groups/{id}/members:
     parameters:
     - in: path
@@ -67,6 +71,8 @@ paths:
       responses:
         '200':
           description: Members
+      operationId: getGroupsByIdMembers
+      x-operation-id-source: derived
 components:
   securitySchemes:
     oauth2:

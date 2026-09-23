@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Microsoft 365 (Microsoft Graph API) Calendar Me API
+  title: Microsoft 365 (Microsoft Graph API) Me API
   description: 'Microsoft 365 productivity and collaboration data is accessed through
 
     Microsoft Graph, a unified REST endpoint at https://graph.microsoft.com.
@@ -9,9 +9,7 @@ info:
 
     Teams, SharePoint sites, and more. Authentication is via OAuth 2.0
 
-    bearer tokens (Microsoft Entra ID).
-
-    '
+    bearer tokens (Microsoft Entra ID).'
   version: '1.0'
   contact:
     name: Microsoft Graph
@@ -36,6 +34,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+      operationId: getMe
+      x-operation-id-source: derived
   /me/manager:
     get:
       tags:
@@ -44,6 +44,8 @@ paths:
       responses:
         '200':
           description: Manager user
+      operationId: getMeManager
+      x-operation-id-source: derived
   /me/memberOf:
     get:
       tags:
@@ -52,6 +54,8 @@ paths:
       responses:
         '200':
           description: Membership list
+      operationId: getMeMemberOf
+      x-operation-id-source: derived
 components:
   schemas:
     User:

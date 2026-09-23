@@ -9,9 +9,7 @@ info:
 
     Teams, SharePoint sites, and more. Authentication is via OAuth 2.0
 
-    bearer tokens (Microsoft Entra ID).
-
-    '
+    bearer tokens (Microsoft Entra ID).'
   version: '1.0'
   contact:
     name: Microsoft Graph
@@ -32,6 +30,8 @@ paths:
       responses:
         '200':
           description: Events
+      operationId: getMeEvents
+      x-operation-id-source: derived
 components:
   securitySchemes:
     oauth2:

@@ -1,13 +1,7 @@
 {
   "provider": "microsoft-365",
   "sources": [
-    "microsoft-365-calendar-api-openapi.yml",
-    "microsoft-365-files-api-openapi.yml",
-    "microsoft-365-groups-api-openapi.yml",
-    "microsoft-365-mail-api-openapi.yml",
-    "microsoft-365-me-api-openapi.yml",
-    "microsoft-365-teams-api-openapi.yml",
-    "microsoft-365-users-api-openapi.yml"
+    "_original/microsoft-365-openapi.yml"
   ],
   "outputs": [
     "microsoft-365-calendar-api-openapi.yml",
@@ -22,14 +16,17 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "microsoft-365-calendar-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "microsoft-365-files-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "microsoft-365-groups-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "microsoft-365-mail-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "microsoft-365-me-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "microsoft-365-teams-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "microsoft-365-users-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "microsoft-365-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "microsoft-365-calendar-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-365-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-365-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-365-mail-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-365-me-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-365-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-365-users-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
