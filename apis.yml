@@ -91,8 +91,6 @@ apis:
     url: https://developer.microsoft.com/graph/graph-explorer
   - type: SDKs
     url: https://learn.microsoft.com/en-us/graph/sdks/sdks-overview
-  - url: graphql/microsoft-365-graphql.md
-    type: GraphQL
 - aid: microsoft-365:graph-beta-api
   name: Microsoft Graph Beta API
   description: >-
